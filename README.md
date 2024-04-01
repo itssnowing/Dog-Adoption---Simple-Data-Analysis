@@ -6,6 +6,14 @@ Initially, I had hoped to utilize the PetFinder API. However, upon reaching out 
 
 The main caveat to note when viewing this project is that the data being used is from a single day only and is several years out of date. I have done my best to emulate the kinds of analysis I was planning on doing if I had been able to get access to the API and had more freedom to query by time.
 
+#### Some Assumptions
+
+The main transformations performed were to trim down the dataset to clean out skewed data and consolidate dog breeds under more common names to make finding things like the most common dog breed easier.
+
+These breed transformations aren't necessarily accurate to the AKC standards, rather, I worked based on using breeds that are commonly used to describe similar breeds or that adoption agencies frequently mislabel (such as Boxers). For example, PetFinder considers Black, Chocolate, and Yellow Labradors 3 distinct breeds: I made them just Labrador Retriever. Because the raw data input is ultimately subjective, it's not 100% accurate on either end, but I'm pretty satisfied with the results.
+
+Beyond that, I sent data to both Google Cloud Storage and BigQuery. Data was cut up in Google Cloud Storage into parquet files in the way I would have liked to do it had I been able to get API access. This piece exists mostly for data mirroring and proof of concept. Data is simultaneously loaded directly into BigQuery with no further partitioning (testing showed that partitioning made things slower due to the small dataset size) in parallel. Looker Studio connects to the BigQuery table.
+
 
 # Tools
 
@@ -56,29 +64,29 @@ Mage was utilized to extract, transform, and load data in one place using a batc
  - Create a fresh pipeline for the project
  - Download the files in the mage folder in this repo
  - Import the files directly or copy & paste them into the appropriate tool types
-	 - **data_loaders:** *get_petfinder_data.py*
-	 - **transformers:** *clean_petfinder_data.py*
+	 - **data_loaders:** `get_petfinder_data.py`
+	 - **transformers:** `clean_petfinder_data.py`
 	 - **data_exporters:**
-		 - *export_petfinder_to_gcs.py* **UPDATE THE BUCKET NAME**
-		 - *export_petfinder_to_bq.py* **UPDATE THE PROJECT ID**
+		 - `export_petfinder_to_gcs.py` **UPDATE THE BUCKET NAME**
+		 - `export_petfinder_to_bq.py` **UPDATE THE PROJECT ID**
  - Set your tree to look like this:
 
 ![Mage Project Tree](https://github.com/itssnowing/dog-adoption-simple-data-analysis/blob/main/images/mage-tree.PNG?raw=true)
 
-Note - If you are running Mage in Cloud Run and are struggling to get your keys.json file into Mage, then follow these steps:
+Note - If you are running Mage in Cloud Run and are struggling to get your `keys.json` file into Mage, then follow these steps:
 
- - Download your keys.json file for your Mage Service Account in GCP > IAM > Service Accounts > Keys
- - In Mage, right-click default_repo > Upload files > drag & drop keys.json
- - The default Mage folder structure path is /home/src/default_repo
- - Edit io_config.yaml and set GOOGLE_SERVICE_ACC_KEY_FILEPATH to your keys.json location
-	 - Should be /home/src/default_repo/keys.json if you dropped it directly without moving it
- - Comment out or delete everything below & including GOOGLE_SERVICE_ACC_KEY
-	 - Do not delete or comment out GOOGLE_SERVICE_ACC_KEY_FILEPATH
+ - Download your `keys.json` file for your Mage Service Account in **GCP > IAM > Service Accounts > Keys**
+ - In Mage, right-click **default_repo > Upload files > drag & drop keys.json**
+ - The default Mage folder structure path is `/home/src/default_repo`
+ - Edit `io_config.yaml` and set **GOOGLE_SERVICE_ACC_KEY_FILEPATH** to your `keys.json` location
+	 - Should be `/home/src/default_repo/keys.jso`n if you dropped it directly without moving it
+ - Comment out or delete everything below & including **GOOGLE_SERVICE_ACC_KEY**
+	 - Do not delete or comment out *GOOGLE_SERVICE_ACC_KEY_FILEPATH*
  - Save
 
 ## Result
 
-I created a dashboard using Google Looker Studio. As mentioned, all transformations were done in Mage. No further transformations or partitioning were done using BigQuery - in tests, partitioning the data actually lowered performance.
+I created a dashboard using Google Looker Studio.
 
 ![PetFinder Dashboard](https://github.com/itssnowing/dog-adoption-simple-data-analysis/blob/main/images/petfinder-dashboard.PNG?raw=true)
 
