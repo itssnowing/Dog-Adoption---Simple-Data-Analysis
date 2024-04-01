@@ -17,6 +17,8 @@ The main caveat to note when viewing this project is that the data being used is
  - **Data Warehouse:** BigQuery
  - **Data Visualization:** Looker Studio
 
+![Pipeline Flowchart](https://github.com/itssnowing/dog-adoption-simple-data-analysis/blob/main/images/pipeline-flowchart.png?raw=true)
+
 ## Dataset Used
 
 As mentioned, this is a historical dataset of PetFinder API information gathered from a single day - 09/20/2019 as the API is no longer accepting new applications.
@@ -58,6 +60,8 @@ Mage was utilized to extract, transform, and load data in one place using a batc
 		 - *export_petfinder_to_gcs.py* **UPDATE THE BUCKET NAME**
 		 - *export_petfinder_to_bq.py* **UPDATE THE PROJECT ID**
  - Set your tree to look like this:
+
+![Mage Project Tree](https://github.com/itssnowing/dog-adoption-simple-data-analysis/blob/main/images/mage-tree.PNG?raw=true)
 
 Note - If you are running Mage in Cloud Run and are struggling to get your keys.json file into Mage, then follow these steps:
 
