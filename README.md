@@ -34,7 +34,7 @@ As mentioned, this is a historical dataset of PetFinder API information gathered
 
 # Reproduction
 
-These steps assume you already have a Google Cloud Platform profile and Mage is installed either [locally](https://docs.mage.ai/getting-started/setup) or [in Cloud Run](https://docs.mage.ai/production/deploying-to-cloud/gcp/setup). The project can be ran entirely within the Google Cloud Platform and uses no other external tools.
+These steps assume you already have a Google Cloud Platform profile, Terraform is installed in your dev environment, and Mage is installed either [locally](https://docs.mage.ai/getting-started/setup) or [in Cloud Run](https://docs.mage.ai/production/deploying-to-cloud/gcp/setup). The project can be ran entirely within the Google Cloud Platform and uses no other external tools.
 
 ### Terraform
 
