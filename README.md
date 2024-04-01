@@ -32,22 +32,24 @@ These steps assume you already have a Google Cloud Platform profile and Mage is 
 
  - Create a new folder for this project anywhere on your machine
 	 - For the instructions the following path will be referenced:
-	 - ./petfinder-project/
+	 - `./petfinder-project/`
  - Create a new folder in the project directory to host your Google Cloud Service Account Credentials
-	 - ./petfinder-project/keys/
+	 - `./petfinder-project/keys/`
 	 - Add your keys.json file to the above directory
 		 - Google IAM Roles needed:
 			 - Storage Admin
 			 - Storage Object Admin
 			 - BigQuery Admin
 - Create a sub-folder for Terraform in the project directory
-	- ./petfinder-project/terraform/
+	- `./petfinder-project/terraform/`
 	- Copy main.tf and variables.tf from the terraform folder in this repo into the terraform folder
 	- cd into your terraform folder via your terminal
 	- Run the following commands:
+    ```
     terraform init
     terraform plan
     terraform apply
+    ```
 
 ### Mage
 Mage was utilized to extract, transform, and load data in one place using a batch operation. This project did not require the transformation capabilities of dbt or pySpark. The transformations are done entirely in Mage using Pandas.
