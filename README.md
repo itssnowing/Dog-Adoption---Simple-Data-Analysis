@@ -43,14 +43,14 @@ These steps assume you already have a Google Cloud Platform profile and Mage is 
 	 - `./petfinder-project/`
  - Create a new folder in the project directory to host your Google Cloud Service Account Credentials
 	 - `./petfinder-project/keys/`
-	 - Add your keys.json file to the above directory
+	 - Add your `keys.json` file to the above directory
 		 - Google IAM Roles needed:
 			 - Storage Admin
 			 - Storage Object Admin
 			 - BigQuery Admin
 - Create a sub-folder for Terraform in the project directory
 	- `./petfinder-project/terraform/`
-	- Copy main.tf and variables.tf from the terraform folder in this repo into the terraform folder
+	- Copy `main.tf` and `variables.tf` from the terraform folder in this repo into the terraform folder you created
 	- cd into your terraform folder via your terminal
 	- Run the following commands:
     ```
