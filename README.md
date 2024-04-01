@@ -80,6 +80,8 @@ Note - If you are running Mage in Cloud Run and are struggling to get your keys.
 
 I created a dashboard using Google Looker Studio. As mentioned, all transformations were done in Mage. No further transformations or partitioning were done using BigQuery - in tests, partitioning the data actually lowered performance.
 
+![PetFinder Dashboard](https://github.com/itssnowing/dog-adoption-simple-data-analysis/blob/main/images/petfinder-dashboard.PNG?raw=true)
+
 You can view the dashboard here:
 [PetFinder Dog Statistics](https://lookerstudio.google.com/s/jHoR_VSwOqw)
 
